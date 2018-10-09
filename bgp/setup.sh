@@ -1,3 +1,4 @@
+#!/bin/sh -eux
 ip netns add LANA
 ip netns exec LANA ip link add name br0 type bridge
 ip netns exec LANA ip link set up dev br0
@@ -5,29 +6,29 @@ ip netns add LANB
 ip netns exec LANB ip link add name br0 type bridge
 ip netns exec LANB ip link set up dev br0
 ip netns add S1
-ip netns exec S1 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 1 > $i/forwarding; done"
-ip netns exec S1 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 0 > $i/rp_filter; done"
+ip netns exec S1 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
+ip netns exec S1 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
 ip netns add S2
-ip netns exec S2 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 1 > $i/forwarding; done"
-ip netns exec S2 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 0 > $i/rp_filter; done"
+ip netns exec S2 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
+ip netns exec S2 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
 ip netns add R1
-ip netns exec R1 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 1 > $i/forwarding; done"
-ip netns exec R1 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 0 > $i/rp_filter; done"
+ip netns exec R1 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
+ip netns exec R1 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
 ip netns add R2
-ip netns exec R2 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 1 > $i/forwarding; done"
-ip netns exec R2 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 0 > $i/rp_filter; done"
+ip netns exec R2 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
+ip netns exec R2 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
 ip netns add R3
-ip netns exec R3 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 1 > $i/forwarding; done"
-ip netns exec R3 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 0 > $i/rp_filter; done"
+ip netns exec R3 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
+ip netns exec R3 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
 ip netns add R4
-ip netns exec R4 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 1 > $i/forwarding; done"
-ip netns exec R4 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 0 > $i/rp_filter; done"
+ip netns exec R4 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
+ip netns exec R4 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
 ip netns add R5
-ip netns exec R5 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 1 > $i/forwarding; done"
-ip netns exec R5 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 0 > $i/rp_filter; done"
+ip netns exec R5 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
+ip netns exec R5 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
 ip netns add R6
-ip netns exec R6 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 1 > $i/forwarding; done"
-ip netns exec R6 bash -c "for i in /proc/sys/net/ipv4/conf/*; do echo 0 > $i/rp_filter; done"
+ip netns exec R6 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
+ip netns exec R6 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
 ip link add S1-LANA type veth peer name LANA-S1
 ip link set S1-LANA netns S1
 ip netns exec S1 ip link set up dev S1-LANA
