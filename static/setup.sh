@@ -7,14 +7,14 @@ ip netns add LANB
 mkdir -p lab1/LANB
 ip netns exec LANB ip link add name br0 type bridge
 ip netns exec LANB ip link set up dev br0
-ip netns add S1
-mkdir -p lab1/S1
-ip netns exec S1 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
-ip netns exec S1 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
-ip netns add S2
-mkdir -p lab1/S2
-ip netns exec S2 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
-ip netns exec S2 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
+ip netns add S
+mkdir -p lab1/S
+ip netns exec S bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
+ip netns exec S bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
+ip netns add C
+mkdir -p lab1/C
+ip netns exec C bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
+ip netns exec C bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
 ip netns add R1
 mkdir -p lab1/R1
 ip netns exec R1 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
@@ -39,13 +39,13 @@ ip netns add R6
 mkdir -p lab1/R6
 ip netns exec R6 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 1 > ${i}/forwarding; done'
 ip netns exec R6 bash -c 'for i in /proc/sys/net/ipv4/conf/*; do echo 0 > ${i}/rp_filter; done'
-ip link add S1-LANA type veth peer name LANA-S1
-ip link set S1-LANA netns S1
-ip netns exec S1 ip link set up dev S1-LANA
-ip link set LANA-S1 netns LANA
-ip netns exec LANA ip link set up dev LANA-S1
-ip netns exec LANA ip link set LANA-S1 master br0
-ip netns exec S1 ip addr add 192.168.100.100/24 dev S1-LANA
+ip link add S-LANA type veth peer name LANA-S
+ip link set S-LANA netns S
+ip netns exec S ip link set up dev S-LANA
+ip link set LANA-S netns LANA
+ip netns exec LANA ip link set up dev LANA-S
+ip netns exec LANA ip link set LANA-S master br0
+ip netns exec S ip addr add 192.168.100.100/24 dev S-LANA
 ip link add R1-LANA type veth peer name LANA-R1
 ip link set R1-LANA netns R1
 ip netns exec R1 ip link set up dev R1-LANA
@@ -130,13 +130,13 @@ ip link set R6-R5 netns R6
 ip netns exec R6 ip link set up dev R6-R5
 ip netns exec R5 ip addr add 192.168.10.0/31 dev R5-R6
 ip netns exec R6 ip addr add 192.168.10.1/31 dev R6-R5
-ip link add S2-LANB type veth peer name LANB-S2
-ip link set S2-LANB netns S2
-ip netns exec S2 ip link set up dev S2-LANB
-ip link set LANB-S2 netns LANB
-ip netns exec LANB ip link set up dev LANB-S2
-ip netns exec LANB ip link set LANB-S2 master br0
-ip netns exec S2 ip addr add 192.168.200.100/24 dev S2-LANB
+ip link add C-LANB type veth peer name LANB-C
+ip link set C-LANB netns C
+ip netns exec C ip link set up dev C-LANB
+ip link set LANB-C netns LANB
+ip netns exec LANB ip link set up dev LANB-C
+ip netns exec LANB ip link set LANB-C master br0
+ip netns exec C ip addr add 192.168.200.100/24 dev C-LANB
 ip link add R5-LANB type veth peer name LANB-R5
 ip link set R5-LANB netns R5
 ip netns exec R5 ip link set up dev R5-LANB
