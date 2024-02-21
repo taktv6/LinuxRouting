@@ -128,8 +128,8 @@ ip link set R5-R6 netns R5
 ip netns exec R5 ip link set up dev R5-R6
 ip link set R6-R5 netns R6
 ip netns exec R6 ip link set up dev R6-R5
-ip netns exec R5 ip addr add 192.168.10.0/31 dev R5-R6
-ip netns exec R6 ip addr add 192.168.10.1/31 dev R6-R5
+ip netns exec R5 ip addr add 192.168.210.0/31 dev R5-R6
+ip netns exec R6 ip addr add 192.168.210.1/31 dev R6-R5
 ip link add C-LANB type veth peer name LANB-C
 ip link set C-LANB netns C
 ip netns exec C ip link set up dev C-LANB
