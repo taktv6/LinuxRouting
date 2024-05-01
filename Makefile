@@ -1,6 +1,6 @@
 #!/bin/bash
 
-.PHONY: install start ospf bgp
+.PHONY: install start ospf bgp clean
 
 install:
 	sudo apt install bird2 terminator tcpdump mtr-tiny vim
@@ -25,3 +25,12 @@ bgp:
 	cp templates/bgp/R4/bird.conf R4/bird.conf
 	cp templates/bgp/R5/bird.conf R5/bird.conf
 	cp templates/bgp/R6/bird.conf R6/bird.conf
+
+clean:
+	rm R1/bird.conf
+	rm R2/bird.conf
+	rm R3/bird.conf
+	rm R4/bird.conf
+	rm R5/bird.conf
+	rm R6/bird.conf
+	sudo ./teardown.sh
