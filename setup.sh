@@ -151,3 +151,16 @@ ip link set LANB-R6 netns LANB
 ip netns exec LANB ip link set up dev LANB-R6
 ip netns exec LANB ip link set LANB-R6 master br0
 ip netns exec R6 ip addr add 192.168.200.2/24 dev R6-LANB
+
+ip netns exec R1 ip link set up dev lo
+ip netns exec R1 ip addr add 192.168.0.1/32 dev lo
+ip netns exec R2 ip link set up dev lo
+ip netns exec R2 ip addr add 192.168.0.2/32 dev lo
+ip netns exec R3 ip link set up dev lo
+ip netns exec R3 ip addr add 192.168.0.3/32 dev lo
+ip netns exec R4 ip link set up dev lo
+ip netns exec R4 ip addr add 192.168.0.4/32 dev lo
+ip netns exec R5 ip link set up dev lo
+ip netns exec R5 ip addr add 192.168.128.5/32 dev lo
+ip netns exec R6 ip link set up dev lo
+ip netns exec R6 ip addr add 192.168.128.6/32 dev lo
