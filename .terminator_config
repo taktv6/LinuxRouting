@@ -127,7 +127,7 @@
       profile = default
       title = S
       uuid = 7f8683fb-73b9-4111-bfd7-46219026f59c
-      command = ./LinuxRouting/enter.sh C
+      command = ./LinuxRouting/enter.sh S
     [[[terminal15]]]
       type = Terminal
       parent = child13
@@ -135,5 +135,5 @@
       profile = default
       title = C
       uuid = 25d10573-dbbd-44f1-b038-907b021066e7
-      command = ./LinuxRouting/enter.sh S
+      command = ./LinuxRouting/enter.sh C
 [plugins]
