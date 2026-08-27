@@ -34,3 +34,17 @@ clean:
 	rm R5/bird.conf
 	rm R6/bird.conf
 	sudo ./teardown.sh
+
+frr:
+	mkdir -p /etc/frr/R1
+	cp daemons /etc/frr/R1
+	mkdir -p /etc/frr/R2
+	cp daemons /etc/frr/R2
+	mkdir -p /etc/frr/R3
+	cp daemons /etc/frr/R3
+	mkdir -p /etc/frr/R4
+	cp daemons /etc/frr/R4
+	mkdir -p /etc/frr/R5
+	cp daemons /etc/frr/R5
+	mkdir -p /etc/frr/R6
+	cp daemons /etc/frr/R6
