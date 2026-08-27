@@ -120,3 +120,5 @@ PS1="\[\e]0;\u@R4: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@R4\
 alias bird='/usr/sbin/bird -c bird.conf -s bird.sock'
 alias birdc='/usr/sbin/birdc -s bird.sock'
 alias cd='ls'
+alias vtysh='vtysh --vty_socket /var/run/frr/R4'
+alias frr='/usr/lib/frr/frrinit.sh start R4'
